@@ -16,7 +16,7 @@ var getRepoName = function() {
         // if no repo was given, redirect to the homepage
         document.location.replace("./index.html");
         } 
-  };
+};
 
 var getRepoIssues = function(repo) {
     var apiUrl = "https://api.github.com/repos/" + repo + "/issues?direction=asc";
