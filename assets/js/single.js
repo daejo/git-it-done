@@ -5,12 +5,11 @@ var repoNameEl = document.querySelector("#repo-name");
 var getRepoName = function() {
     var queryString = document.location.search;
     var repoName = queryString.split("=")[1];
-    getRepoIssues(repoName);
-    repoNameEl.textContent = repoName;
+    console.log(repoName);
 }
 
-var getRepoIssues = function(repoName) {
-    var apiUrl = "https://api.github.com/repos/" + repoName + "/issues?direction=asc";
+var getRepoIssues = function(repo) {
+    var apiUrl = "https://api.github.com/repos/" + repo + "/issues?direction=asc";
     fetch(apiUrl).then(function(response) {
         // request was successful
         if (response.ok) {
@@ -20,7 +19,7 @@ var getRepoIssues = function(repoName) {
 
                 // check if api has paginated issues
                 if (response.headers.get("Link")) {
-                    displayWarning(repoName);
+                    displayWarning(repo);
                 }
             });
         }
